@@ -11,6 +11,14 @@ function runOsDemo(): void{
     console.log("os release",os.release());
     console.log("home directory", os.homedir());
     console.log("temp dir",os.tmpdir())
+
+    const cpus = os.cpus()
+    console.log(cpus.length);
+
+    if(cpus.length>0){
+        console.log('first CPU model', cpus[0].speed, cpus[0].times)
+    }
+    console.log(os.totalmem(), os.freemem());
 }
 
 runOsDemo();
