@@ -46,9 +46,11 @@ function runApp():void{
     });
     if(shouldFail){
         console.log("Manual failure triggered with --fail flag");
+        process.exit(1);
     }   
     if(shouldCrash){
         console.log("Manual crash triggered with -- crash flag")
+        process.exit(1);
     }
 }
 runApp();
