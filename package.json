@@ -4,11 +4,8 @@
   "description": "JS runs outside the browser",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/01-process-object.ts",
-    "migration": "",
-    "unit": "",
-    "e2e": ""
+    "build":"tsc",
+    "01":"tsx src/01-process-object.ts"
   },
   "repository": {
     "type": "git",
@@ -17,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/anya-builds/Backend/issues"
   },
