@@ -9,9 +9,15 @@
 
 //process.env
 
-import process from "node:process"
+// import process from "node:process";
 
-const nodeEnv = process.env.NODE_ENV ?? "development"
+// const nodeEnv = process.env.NODE_ENV ?? "development";
+
+// process.env values are always string r undefined
+// const port = Number(process.env.PORT?? 3000)
+
+
+
 
 
 
