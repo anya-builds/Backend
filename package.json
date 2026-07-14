@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/index.ts",
-    "migration":"",
-    "unit":"",
-    "e2e":""
+    "migration": "",
+    "unit": "",
+    "e2e": ""
   },
   "repository": {
     "type": "git",
