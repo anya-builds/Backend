@@ -25,4 +25,10 @@ const uploadFilePath = path.join(
     projectRoot, "uploads","users",userId, originalName
 )
 
-console.log(uploadFilePath)
+console.log(uploadFilePath);
+
+// final part of a path
+const fileName = path.basename(uploadFilePath)
+const fileExt = path.extname(uploadFilePath);
+
+console.log(fileName, fileExt)
