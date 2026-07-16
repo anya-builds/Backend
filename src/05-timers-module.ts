@@ -6,6 +6,7 @@
 // cleartimeout
 // clearinterval
 // setimmediate
+import { error } from 'node:console';
 import {setTimeout as sleep} from 'node:timers/promises'
 function runSetTimeoutExample(): void{
     console.log("1. setTimeout example started");
@@ -48,6 +49,12 @@ function runSetImmediateExample(): void{
     console.log("8. synchronous code after  setImmediate")
 }
 
+async function runPromiseTimerExample(): Promise<void>{
+    console.log("9. waiting for promise based timer");
+    await sleep(5500);
+    console.log("10. promise based timer finishes after 1.5 seconds")
+}
+
 function runTimerDemo(): void {
     runSetTimeoutExample();
     runClearTimeoutExample();
@@ -55,3 +62,7 @@ function runTimerDemo(): void {
     runSetImmediateExample();
 }
 runTimerDemo();
+
+runPromiseTimerExample().catch((error: unknown)=>{
+    console.error("timer based demo failed", error);
+})
