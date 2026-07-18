@@ -1,4 +1,5 @@
 import { error } from "node:console";
+import { resolve } from "node:dns";
 
 type User={
     id: number,
@@ -39,10 +40,41 @@ function findUserWithCallbck(
     },500)
 }
 
-findUserWithCallbck(3,(error, user)=>{
-    if(error){
-        console.log('callback error', error.message);
-        return;
+// findUserWithCallbck(3,(error, user)=>{
+//     if(error){
+//         console.log('callback error', error.message);
+//         return;
+//     }
+//     console.log("callback result", user?.id, user?.name, user?.role);
+// })
+
+function findUserWithPromise(userId: number): Promise<User>  {
+
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+                const user = users.find(currentUser=> currentUser.id === userId)
+                if(!user){
+                    reject(new Error(`user with ${userId} data was not found`))
+                    return
+                }
+                resolve(user)
+        },1000)
+    })
+}
+ async function findUserWithAsyncAwait(userId: number): Promise<void>{
+    try{
+        const user= await findUserWithPromise(userId)
+        console.log('async/await', user.name);
+    }catch(error){
+        const message = error instanceof Error ? error.message : 'Unknown error'
+        console.log("async/await", message);
     }
-    console.log("callback result", user?.id, user?.name, user?.role);
-})
+ }
+
+// findUserWithPromise(100).then((user)=>{
+//     console.log("promise result", user?.id, user?.name, user?.role)
+// }).catch((error: Error)=>{
+//     console.log("promise error", error.message)
+// })
+
+findUserWithAsyncAwait(100)
