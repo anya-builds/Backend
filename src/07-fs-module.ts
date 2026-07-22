@@ -1,7 +1,10 @@
  import path from "node:path"
  import fs from 'node:fs'
+import { resolve } from "node:dns"
 const DEMO_FOLDER_PATH=  path.join(process.cwd(),'file-system','fs-demo')
 const SYNC_FILE_PATH = path.join(DEMO_FOLDER_PATH,'sync-note.txt')
+const CALLBACK_FILE_PATH= path.join(DEMO_FOLDER_PATH,"callback-note.txt")
+const PROMISE_FILE_PATH=path.join(DEMO_FOLDER_PATH,"promise-note.txt")
 
 type fileResult={
     style: string,
@@ -61,4 +64,30 @@ async function main(): Promise<void>{
     console.error("File system error:", message);
 }
 } 
-main()
+// main()
+
+function runCallbackExample(): Promise<fileResult>{
+    return new Promise((resolve, reject)=>{
+        fs.writeFile(
+            CALLBACK_FILE_PATH,
+            "created using callback fs",
+            "utf-8",
+            (writeError)=>{
+                if(writeError){
+                    reject(writeError)
+                    return
+                }
+                fs.appendFile(
+                    CALLBACK_FILE_PATH,
+                    "Append using callback fs ",
+                    "utf-8",
+                    (appendError)=> {
+                        reject(appendError)
+                        return
+                    }
+
+                )
+            }
+        )
+    })
+}
