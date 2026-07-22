@@ -29,7 +29,9 @@ type fileResult={
 // background apis
 
 function ensureDemoFolderExists(): void{
-    if(!fs.existsSync(DEMO_FOLDER_PATH))
+    if(!fs.existsSync(DEMO_FOLDER_PATH)){
+        fs.mkdirSync(DEMO_FOLDER_PATH,{recursive: true})
+    }
 }
 function runSyncExample():  fileResult{
     // wriite content to a file
@@ -52,10 +54,11 @@ function runSyncExample():  fileResult{
 async function main(): Promise<void>{
     try{
         ensureDemoFolderExists()
-    }catch(error{
-        const message = error instanceof Error ? error.message : "Unknown Error"
-        console.error("file system error", message);
-
-    }
+        const syncResult = runSyncExample();
+        console.log(syncResult)
+    } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown Error";
+    console.error("File system error:", message);
+}
 } 
 main()
