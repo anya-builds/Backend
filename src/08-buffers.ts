@@ -11,3 +11,13 @@
 // buffer - raw bytes
 
 const textBuffer = Buffer.from("Node")
+console.log(textBuffer)
+
+// N - 4e
+// o-6f
+// d-64
+
+console.log(textBuffer.toString('utf-8'))
+
+const engBuffer = Buffer.from("hello");
+console.log(engBuffer.length)
