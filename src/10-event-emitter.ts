@@ -24,7 +24,13 @@ appEvents.on("user:registered",(user: UserRegisterPayload)=>{
 
 appEvents.on("user:registered", (user: UserRegisterPayload)=>{
     console.log(`log listener: user ${user.id} and email is ${user.email}`)
+});
+
+appEvents.once("app.started",()=> {
+    console.log("once listener: app started");
 })
+
+
 
 function regsiterUser(): void{
     const user = {
@@ -38,4 +44,6 @@ function regsiterUser(): void{
     console.log("register user: event listeners completed.")
 }
 
+appEvents.emit("app.started");
+appEvents.emit("app.started");
 regsiterUser()
