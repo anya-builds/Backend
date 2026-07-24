@@ -31,4 +31,10 @@ const server = http.createServer((req: IncomingMessage , res: ServerResponse)=>{
     // 201, 400, 429, 401
 
     res.setHeader('Content-Type','text/plain')
+
+    res.end(`Basic http node server: ${method}: ${url}: ${userAgent}`)
+})
+
+server.listen(PORT, ()=>{
+    console.log(`server is now running on port ${PORT}`)
 })
